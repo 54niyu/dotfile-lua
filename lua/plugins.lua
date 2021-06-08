@@ -18,6 +18,9 @@ return require('packer').startup(function(use)
   -- Packer can manage itself as an optional plugin
   use 'wbthomason/packer.nvim'
 
+  use 'nvim-lua/popup.nvim'
+  use 'nvim-lua/plenary.nvim'
+
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'onsails/lspkind-nvim'
@@ -42,30 +45,25 @@ return require('packer').startup(function(use)
   use 'ryanoasis/vim-devicons'
 
   -- Status Line and Bufferline
-  use 'famiu/feline.nvim'
+  use {"glepnir/galaxyline.nvim"}
 
   -- Which key
   use {"folke/which-key.nvim"}
 
   -- Telescope
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-fzy-native.nvim'
   use 'nvim-telescope/telescope-project.nvim'
-  use 'fhill2/telescope-ultisnips.nvim'
 
   -- Explorer
   use 'kyazdani42/nvim-tree.lua'
-
-  -- Color
-  use 'norcalli/nvim-colorizer.lua'
 
   -- Git
   use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'} }
   use 'sindrets/diffview.nvim'
   use { 'TimUntersberger/neogit', requires = "nvim-lua/plenary.nvim"}
 
+  -- Quickfix
   use {"kevinhwang91/nvim-bqf"}
 
   -- Move & Search & replace
@@ -78,13 +76,17 @@ return require('packer').startup(function(use)
 
   -- General Plugins
   use 'airblade/vim-rooter'
-  use 'numtostr/FTerm.nvim'
-  use {"akinsho/nvim-toggleterm.lua"}
-  use 'folke/todo-comments.nvim'
   use {"terrortylor/nvim-comment"}
   use {'edluffy/specs.nvim'}
-  use {'ray-x/go.nvim'}
-  use {'54niyu/nvim-lint' }
+  use 'folke/todo-comments.nvim'
   use {'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons'}
-  use {"glepnir/galaxyline.nvim"}
+
+  -- Term
+  use {"akinsho/nvim-toggleterm.lua"}
+
+  -- Go
+  use {'ray-x/go.nvim'}
+
+  -- Lint
+  use {'54niyu/nvim-lint' }
 end)

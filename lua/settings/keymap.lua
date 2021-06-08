@@ -1,12 +1,3 @@
--- Nvimtree
--- vim.api.nvim_set_keymap('n', '<space>e', ':NvimTreeToggle<CR>', {noremap = false, silent = true})
-
--- Telescope
--- vim.api.nvim_set_keymap('n', '<space><space>', ":lua require('plugins.telescope').project_files()<CR>", {noremap = true, silent = true})
-
--- vim.api.nvim_set_keymap('n', '<space>p', ":lua require('telescope').extensions.project.project{}<CR>", {noremap = true, silent = true})
-
-
 -- better window movement
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
