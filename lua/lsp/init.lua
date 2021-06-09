@@ -56,7 +56,7 @@ require'lspconfig'.gopls.setup{
    filetype = {"go","golang"},
    on_attach = on_attach,
    capabilities = capabilities,
-   settings = {gopls = {analyses = {unusedparams = true}, staticcheck = true}},
+   settings = {gopls = {analyses = {unusedparams = true,fillstruct = false}, staticcheck = true}},
    init_options = {usePlaceholders = true, completeUnimported = true},
 }
 
