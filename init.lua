@@ -9,7 +9,7 @@ require('lsp')
 -- Plugins config
 require('plugins.which-key')
 require('plugins.galaxyline')
-require('plugins.fterm')
+require('plugins.toggleterm')
 require('plugins.hlslens')
 require('plugins.treesitter')
 require('plugins.gitsigns')

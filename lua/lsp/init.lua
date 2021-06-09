@@ -93,5 +93,7 @@ end
 
 vim.cmd[[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 10000)]]
 vim.cmd[[autocmd BufWritePre *.go lua goimports(1000)]]
+vim.cmd[[autocmd BufWritePost *.go lua require("lint").try_lint()]]
 
 require('go').setup()
+

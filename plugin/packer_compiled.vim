@@ -72,17 +72,9 @@ end
 time("try_loadstring definition", false)
 time("Defining packer_plugins", true)
 _G.packer_plugins = {
-  ["FTerm.nvim"] = {
-    loaded = true,
-    path = "/home/bing/.local/share/nvim/site/pack/packer/start/FTerm.nvim"
-  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/diffview.nvim"
-  },
-  ["feline.nvim"] = {
-    loaded = true,
-    path = "/home/bing/.local/share/nvim/site/pack/packer/start/feline.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -112,6 +104,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/bing/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim"
+  },
   neogit = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/neogit"
@@ -123,10 +120,6 @@ _G.packer_plugins = {
   ["nvim-bqf"] = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/nvim-bqf"
-  },
-  ["nvim-colorizer.lua"] = {
-    loaded = true,
-    path = "/home/bing/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
   },
   ["nvim-comment"] = {
     loaded = true,
@@ -204,10 +197,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/telescope-project.nvim"
   },
-  ["telescope-ultisnips.nvim"] = {
-    loaded = true,
-    path = "/home/bing/.local/share/nvim/site/pack/packer/start/telescope-ultisnips.nvim"
-  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/telescope.nvim"
@@ -251,6 +240,14 @@ _G.packer_plugins = {
 }
 
 time("Defining packer_plugins", false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time("Defining lazy-load filetype autocommands", true)
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType md ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "md" }, _G.packer_plugins)]]
+time("Defining lazy-load filetype autocommands", false)
+vim.cmd("augroup END")
 if should_profile then save_profiles() end
 
 END

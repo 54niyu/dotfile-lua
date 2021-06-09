@@ -61,8 +61,8 @@ return require('packer').startup(function(use)
   -- Git
   use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'} }
   use 'sindrets/diffview.nvim'
-  use { 'TimUntersberger/neogit', requires = "nvim-lua/plenary.nvim"}
-
+  use { 'TimUntersberger/neogit', requires = {"nvim-lua/plenary.nvim","sindrets/diffview.nvim"} }
+ 
   -- Quickfix
   use {"kevinhwang91/nvim-bqf"}
 
@@ -89,4 +89,6 @@ return require('packer').startup(function(use)
 
   -- Lint
   use {'54niyu/nvim-lint' }
+
+  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}}
 end)
