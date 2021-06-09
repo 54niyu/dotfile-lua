@@ -72,6 +72,10 @@ end
 time("try_loadstring definition", false)
 time("Defining packer_plugins", true)
 _G.packer_plugins = {
+  ["compe-tabnine"] = {
+    loaded = true,
+    path = "/home/bing/.local/share/nvim/site/pack/packer/start/compe-tabnine"
+  },
   ["diffview.nvim"] = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/diffview.nvim"

@@ -1,5 +1,5 @@
 -- Global
-vim.opt.fillchars = { vert = ' ' }
+-- vim.opt.fillchars = { vert = ' ' }
 vim.opt.showtabline = 2
 vim.opt.scrolloff = 5
 vim.opt.mouse = 'a'
@@ -22,14 +22,14 @@ vim.opt.errorbells = false
 vim.opt.joinspaces = false
 vim.opt.title = true
 vim.opt.lazyredraw = true
-vim.opt.encoding = 'UTF-8'
+-- vim.opt.encoding = 'UTF-8'
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→",eol = "↲", nbsp = "␣" }
 -- Buffer
 vim.opt.fileformat = 'unix'
 vim.opt.tabstop = 4
-vim.opt.spelllang = 'it'
+-- vim.opt.spelllang = 'it'
 vim.opt.softtabstop = 4
 vim.opt.swapfile = false
 vim.opt.undofile = false

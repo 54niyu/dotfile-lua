@@ -30,6 +30,7 @@ return require('packer').startup(function(use)
   use {"hrsh7th/vim-vsnip"}
   use {"hrsh7th/vim-vsnip-integ"}
   use {"rafamadriz/friendly-snippets"}
+  use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
   use 'windwp/nvim-autopairs'
   use 'andymass/vim-matchup'
 
