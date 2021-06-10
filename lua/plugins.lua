@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
   use 'sainnhe/gruvbox-material'
 
   -- General Plugins
-  use 'airblade/vim-rooter'
+  use {'airblade/vim-rooter', disable = true}
   use {"terrortylor/nvim-comment"}
   use {'edluffy/specs.nvim'}
   use 'folke/todo-comments.nvim'

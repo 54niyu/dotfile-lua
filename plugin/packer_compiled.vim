@@ -221,10 +221,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/vim-matchup"
   },
-  ["vim-rooter"] = {
-    loaded = true,
-    path = "/home/bing/.local/share/nvim/site/pack/packer/start/vim-rooter"
-  },
   ["vim-signature"] = {
     loaded = true,
     path = "/home/bing/.local/share/nvim/site/pack/packer/start/vim-signature"
