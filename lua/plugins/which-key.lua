@@ -74,6 +74,7 @@ local mappings = {
     ["h"] = "No Highlight",
     ["t"] = "ToggleTerminal",
     ["b"] = "Buffer",
+    ["r"] = "Replace",
     b = {
         name = "+buffer",
         l = {"<cmd>Telescope buffers<cr>", "List Buffers"},
@@ -125,6 +126,10 @@ local mappings = {
         R = {"<cmd>Telescope registers<cr>", "Registers"},
         t = {"<cmd>Telescope live_grep<cr>", "Text"},
         p = {"<cmd> lua require'telescope'.extensions.project.project{}<cr>","Project"}
+    },
+    r = {
+        name = "+Replace",
+        r = {"<cmd>lua require'spectre'.open()<cr>", "Replace"}
     },
     S = {name = "+Session", s = {"<cmd>SessionSave<cr>", "Save Session"}, l = {"<cmd>SessionLoad<cr>", "Load Session"}}
 }
