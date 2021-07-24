@@ -89,7 +89,7 @@ return require('packer').startup(function(use)
   use {'ray-x/go.nvim'}
 
   -- Lint
-  use {'54niyu/nvim-lint' }
+  use {'mfussenegger/nvim-lint' }
 
   use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}}
 end)
