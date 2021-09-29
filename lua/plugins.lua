@@ -57,7 +57,12 @@ return require('packer').startup(function(use)
   use 'nvim-telescope/telescope-project.nvim'
 
   -- Explorer
-  use 'kyazdani42/nvim-tree.lua'
+  use {
+      'kyazdani42/nvim-tree.lua',
+      requires = 'kyazdani42/nvim-web-devicons',
+      config = function() require'nvim-tree'.setup {} end
+  }
+  -- use 'kyazdani42/nvim-tree.lua'
 
   -- Git
   use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'} }
@@ -81,6 +86,8 @@ return require('packer').startup(function(use)
   use {'edluffy/specs.nvim'}
   use 'folke/todo-comments.nvim'
   use {'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+
+  use { "folke/tokyonight.nvim" }
 
   -- Term
   use {"akinsho/nvim-toggleterm.lua"}
