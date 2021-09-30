@@ -2,101 +2,168 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
-  execute 'packadd packer.nvim'
+	execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
+	execute("packadd packer.nvim")
 end
 
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+vim.cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
 
 -- require('packer').init({display = {non_interactive = true}})
-require('packer').init({display = {auto_clean = false}})
+require("packer").init({ display = { auto_clean = false } })
 
-return require('packer').startup(function(use)
-  -- Packer can manage itself as an optional plugin
-  use 'wbthomason/packer.nvim'
+return require("packer").startup(function(use)
+	-- Packer can manage itself as an optional plugin
+	use("wbthomason/packer.nvim")
 
-  use 'nvim-lua/popup.nvim'
-  use 'nvim-lua/plenary.nvim'
+	use("nvim-lua/popup.nvim")
+	use("nvim-lua/plenary.nvim")
 
-  -- LSP
-  use 'neovim/nvim-lspconfig'
-  use 'onsails/lspkind-nvim'
+	-- LSP
+	use("neovim/nvim-lspconfig")
+	use("onsails/lspkind-nvim")
 
-  -- Autocomplete
-  use 'hrsh7th/nvim-compe'
-  use {"hrsh7th/vim-vsnip"}
-  use {"hrsh7th/vim-vsnip-integ"}
-  use {"rafamadriz/friendly-snippets"}
-  use {'tzachar/compe-tabnine', run='./install.sh', requires = 'hrsh7th/nvim-compe'}
-  use 'windwp/nvim-autopairs'
-  use 'andymass/vim-matchup'
+	-- Autocomplete
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-vsnip")
+	use("hrsh7th/vim-vsnip")
+	use("hrsh7th/cmp-path")
+	use("hrsh7th/cmp-calc")
+	use("ray-x/cmp-treesitter")
+	use({
+		"tzachar/cmp-tabnine",
+		run = "./install.sh",
+		requires = "hrsh7th/nvim-cmp",
+		config = function()
+			local tabnine = require("cmp_tabnine.config")
+			tabnine:setup({
+				max_lines = 1000,
+				max_num_results = 20,
+				sort = true,
+				run_on_every_keystroke = true,
+			})
+		end,
+	})
 
-  -- Treesitter
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use 'p00f/nvim-ts-rainbow'
-  use { 'lukas-reineke/indent-blankline.nvim' }
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
-  use 'romgrk/nvim-treesitter-context'
+	use("windwp/nvim-autopairs")
 
-  -- Icons
-  use 'kyazdani42/nvim-web-devicons'
-  use 'ryanoasis/vim-devicons'
+	use("andymass/vim-matchup")
 
-  -- Status Line and Bufferline
-  use {"glepnir/galaxyline.nvim"}
+	-- Treesitter
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use("p00f/nvim-ts-rainbow")
+	use({ "lukas-reineke/indent-blankline.nvim" })
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+	use("romgrk/nvim-treesitter-context")
 
-  -- Which key
-  use {"folke/which-key.nvim"}
+	-- Icons
+	use("kyazdani42/nvim-web-devicons")
+	use("ryanoasis/vim-devicons")
 
-  -- Telescope
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-fzy-native.nvim'
-  use 'nvim-telescope/telescope-project.nvim'
+	-- Status Line and Bufferline
+	use({ "glepnir/galaxyline.nvim" })
 
-  -- Explorer
-  use {
-      'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons',
-      config = function() require'nvim-tree'.setup {} end
-  }
-  -- use 'kyazdani42/nvim-tree.lua'
+	-- Which key
+	use({ "folke/which-key.nvim" })
 
-  -- Git
-  use { 'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'} }
-  use 'sindrets/diffview.nvim'
-  use { 'TimUntersberger/neogit', requires = {"nvim-lua/plenary.nvim","sindrets/diffview.nvim"} }
- 
-  -- Quickfix
-  use {"kevinhwang91/nvim-bqf"}
+	-- Telescope
+	use("nvim-telescope/telescope.nvim")
+	use("nvim-telescope/telescope-fzy-native.nvim")
+	use("nvim-telescope/telescope-project.nvim")
 
-  -- Move & Search & replace
-  use 'windwp/nvim-spectre'
-  use 'kevinhwang91/nvim-hlslens'
-  use 'kshenoy/vim-signature'
+	-- Explorer
+	use({
+		"kyazdani42/nvim-tree.lua",
+		requires = "kyazdani42/nvim-web-devicons",
+		config = function()
+			require("nvim-tree").setup({})
+		end,
+	})
+	-- use 'kyazdani42/nvim-tree.lua'
 
-  -- Colorschema
-  use 'sainnhe/gruvbox-material'
+	-- Git
+	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	use({
+		"sindrets/diffview.nvim",
+		opt = true,
+		cmd = "Diffview",
+		config = function()
+			require("plugins.diffview")
+		end,
+	})
+	use({
+		"TimUntersberger/neogit",
+		opt = true,
+		requires = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
+		cmd = { "Neogit" },
+	})
+	-- Quickfix
+	use({ "kevinhwang91/nvim-bqf" })
 
-  -- General Plugins
-  use {'airblade/vim-rooter', disable = true}
-  use {"terrortylor/nvim-comment"}
-  use {'edluffy/specs.nvim'}
-  use 'folke/todo-comments.nvim'
-  use {'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+	-- Move & Search & replace
+	use("windwp/nvim-spectre")
+	use("kevinhwang91/nvim-hlslens")
+	use("kshenoy/vim-signature")
 
-  use { "folke/tokyonight.nvim" }
+	-- Colorschema
+	use("sainnhe/gruvbox-material")
+	use("navarasu/onedark.nvim")
 
-  -- Term
-  use {"akinsho/nvim-toggleterm.lua"}
+	-- General Plugins
+	use({ "airblade/vim-rooter", disable = true })
+	use({ "terrortylor/nvim-comment" })
+	use({ "edluffy/specs.nvim" })
+	use({
+		"folke/todo-comments.nvim",
+		opt = true,
+		config = function()
+			require("todo-comments").setup({})
+		end,
+	})
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+		opt = true,
+		config = function()
+			require("trouble").setup({})
+		end,
+	})
 
-  -- Go
-  use {'ray-x/go.nvim'}
+	use({ "folke/tokyonight.nvim" })
 
-  -- Lint
-  use {'mfussenegger/nvim-lint' }
+	-- Term
+	use({ "akinsho/nvim-toggleterm.lua" })
 
-  use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', ft = {'markdown', 'md'}}
+	-- Go
+	use({
+		"ray-x/go.nvim",
+		opt = true,
+		ft = "go",
+		config = function()
+			require("go").setup()
+		end,
+	})
+
+	-- Lint
+	use({
+		"mfussenegger/nvim-lint",
+		opt = true,
+		ft = { "go" },
+		config = function()
+			require("lint").linters_by_ft = {
+				go = { "golangcilint" },
+			}
+		end,
+	})
+
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && yarn install",
+		ft = { "markdown", "md" },
+		cmd = "MarkdownPreview",
+	})
 end)
