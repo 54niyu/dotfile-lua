@@ -23,7 +23,7 @@ require("which-key").setup({
 		border = "single", -- none, single, double, shadow
 		position = "bottom", -- bottom, top
 		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+		padding = { 1, 1, 1, 1 }, -- extra window padding [top, right, bottom, left]
 	},
 	layout = {
 		height = { min = 4, max = 25 }, -- min and max height of the columns
@@ -73,8 +73,8 @@ local mappings = {
 	["<Space>"] = "Find File",
 	["h"] = "No Highlight",
 	["t"] = "ToggleTerminal",
-	["b"] = "Buffer",
-	["r"] = "Replace",
+	-- ["b"] = "Buffer",
+	-- ["r"] = "Replace",
 	b = {
 		name = "+buffer",
 		l = { "<cmd>Telescope buffers<cr>", "List Buffers" },
@@ -82,13 +82,13 @@ local mappings = {
 	},
 	g = {
 		name = "+Git",
-		j = { "<cmd>NextHunk<cr>", "Next Hunk" },
-		k = { "<cmd>PrevHunk<cr>", "Prev Hunk" },
-		p = { "<cmd>PreviewHunk<cr>", "Preview Hunk" },
-		r = { "<cmd>ResetHunk<cr>", "Reset Hunk" },
-		R = { "<cmd>ResetBuffer<cr>", "Reset Buffer" },
-		s = { "<cmd>StageHunk<cr>", "Stage Hunk" },
-		u = { "<cmd>UndoStageHunk<cr>", "Undo Stage Hunk" },
+		-- j = { "<cmd>NextHunk<cr>", "Next Hunk" },
+		-- k = { "<cmd>PrevHunk<cr>", "Prev Hunk" },
+		-- p = { "<cmd>PreviewHunk<cr>", "Preview Hunk" },
+		-- r = { "<cmd>ResetHunk<cr>", "Reset Hunk" },
+		-- R = { "<cmd>ResetBuffer<cr>", "Reset Buffer" },
+		-- s = { "<cmd>StageHunk<cr>", "Stage Hunk" },
+		-- u = { "<cmd>UndoStageHunk<cr>", "Undo Stage Hunk" },
 		o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
 		b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 		c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
@@ -125,12 +125,13 @@ local mappings = {
 		r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
 		R = { "<cmd>Telescope registers<cr>", "Registers" },
 		t = { "<cmd>Telescope live_grep<cr>", "Text" },
-		p = { "<cmd> lua require'telescope'.extensions.project.project{}<cr>", "Project" },
 	},
-	-- r = {
-	-- 	name = "+Replace",
-	-- 	r = { "<cmd>lua require'spectre'.open()<cr>", "Replace" },
-	-- },
+
+	p = { "<cmd>Telescope projects<cr>", "Project" },
+	r = {
+		name = "+Replace",
+		r = { "<cmd>lua require'spectre'.open()<cr>", "Replace" },
+	},
 	S = {
 		name = "+Session",
 		s = { "<cmd>SessionSave<cr>", "Save Session" },

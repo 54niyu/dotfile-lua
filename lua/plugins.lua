@@ -24,6 +24,13 @@ return require("packer").startup(function(use)
 	-- LSP
 	use("neovim/nvim-lspconfig")
 	use("onsails/lspkind-nvim")
+	use("glepnir/lspsaga.nvim")
+	use({
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup()
+		end,
+	})
 
 	-- Autocomplete
 	use("hrsh7th/nvim-cmp")
@@ -51,6 +58,8 @@ return require("packer").startup(function(use)
 
 	use("windwp/nvim-autopairs")
 
+	--"ChristianChiarulli/dashboard-nvim",
+
 	use("andymass/vim-matchup")
 
 	-- Treesitter
@@ -73,24 +82,30 @@ return require("packer").startup(function(use)
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-fzy-native.nvim")
-	use("nvim-telescope/telescope-project.nvim")
+	-- use("nvim-telescope/telescope-project.nvim")
+	use({
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("project_nvim").setup({})
+			vim.g.nvim_tree_respect_buf_cwd = 1
+		end,
+	})
 
 	-- Explorer
 	use({
 		"kyazdani42/nvim-tree.lua",
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
-			require("nvim-tree").setup({})
+       require("plugins.nvimtree")
 		end,
 	})
-	-- use 'kyazdani42/nvim-tree.lua'
 
 	-- Git
 	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({
 		"sindrets/diffview.nvim",
 		opt = true,
-		cmd = "Diffview",
+		cmd = "DiffviewOpen",
 		config = function()
 			require("plugins.diffview")
 		end,
