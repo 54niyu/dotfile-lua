@@ -188,12 +188,5 @@ return require("packer").startup(function(use)
 			require("plugins.null-ls")()
 		end,
 		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	})
-
-	use({
-		"mhartington/formatter.nvim",
-		config = function()
-			require("plugins.formatter")()
-		end,
-	})
+    	})
 end)

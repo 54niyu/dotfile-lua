@@ -6,20 +6,22 @@ return function()
 
 	local b = null_ls.builtins
 	local sources = {
+		-- lua formatting
+		b.formatting.stylua,
+		-- python formatting
+		b.formatting.autopep8,
+
+		-- b.formatting.codespell,
+
 		-- go formatting
-		b.formatting.gofumpt,
+		-- b.formatting.gofumpt,
 		-- b.formatting.goimports,
 
 		-- go lint
-		b.diagnostics.golangci_lint,
+		-- b.diagnostics.golangci_lint,
 	}
-
-	local M = {}
-	M.setup = function(on_attach)
-		null_ls.config({
-			sources = sources,
-		})
-		require("lspconfig")["null-ls"].setup({ on_attach = on_attach })
-	end
-	return M
+	null_ls.config({
+		sources = sources,
+	})
+	require("lspconfig")["null-ls"].setup({})
 end

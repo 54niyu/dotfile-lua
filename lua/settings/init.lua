@@ -46,7 +46,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.relativenumber = true
 vim.opt.foldenable = false
 vim.opt.cursorline = true
-vim.opt.timeoutlen = 250
+vim.opt.timeoutlen = 600
 
 vim.cmd([[autocmd BufReadPost * lua goto_last_pos()]])
 function goto_last_pos()

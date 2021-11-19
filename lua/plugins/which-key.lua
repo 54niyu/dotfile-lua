@@ -125,6 +125,7 @@ local mappings = {
 		s = { "<cmd>SessionSave<cr>", "Save Session" },
 		l = { "<cmd>SessionLoad<cr>", "Load Session" },
 	},
+	x = { "<cmd>cclose<cr>", "Close Quickfix" },
 }
 
 local wk = require("which-key")
