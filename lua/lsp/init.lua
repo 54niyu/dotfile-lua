@@ -63,40 +63,60 @@ require("lspconfig").gopls.setup({
 	init_options = { usePlaceholders = true, completeUnimported = true },
 })
 
-function goimports(timeout_ms)
-	local context = { source = { organizeImports = true } }
-	vim.validate({ context = { context, "t", true } })
+require("lspconfig").pyright.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 
-	local params = vim.lsp.util.make_range_params()
-	params.context = context
-
-	-- See the implementation of the textDocument/codeAction callback
-	-- (lua/vim/lsp/handler.lua) for how to do this properly.
-	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, timeout_ms)
-	if not result or next(result) == nil then
-		return
-	end
-	local actions = result[1].result
-	if not actions then
-		return
-	end
-	local action = actions[1]
-
-	-- textDocument/codeAction can return either Command[] or CodeAction[]. If it
-	-- is a CodeAction, it can have either an edit, a command or both. Edits
-	-- should be executed first.
-	if action.edit or type(action.command) == "table" then
-		if action.edit then
-			vim.lsp.util.apply_workspace_edit(action.edit)
-		end
-		if type(action.command) == "table" then
-			vim.lsp.buf.execute_command(action.command)
-		end
-	else
-		vim.lsp.buf.execute_command(action)
-	end
+local system_name
+if vim.fn.has("mac") == 1 then
+	system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+	system_name = "Linux"
+elseif vim.fn.has("win32") == 1 then
+	system_name = "Windows"
+else
+	print("Unsupported system for sumneko")
 end
 
-vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 10000)]])
-vim.cmd([[autocmd BufWritePre *.go lua goimports(5000)]])
-vim.cmd([[autocmd BufWritePost *.go lua require("lint").try_lint()]])
+-- set the path to the sumneko installation; if you previously installed via the now deprecated :LspInstall, use
+local sumneko_root_path = "/Users/bing.wang/lua-language-server"
+local sumneko_binary = sumneko_root_path .. "/bin/" .. system_name .. "/lua-language-server"
+
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+require("lspconfig").sumneko_lua.setup({
+	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			runtime = {
+				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+				version = "LuaJIT",
+				-- Setup your lua path
+				path = runtime_path,
+			},
+			diagnostics = {
+				-- Get the language server to recognize the `vim` global
+				globals = { "vim" },
+			},
+			workspace = {
+				-- Make the server aware of Neovim runtime files
+				library = vim.api.nvim_get_runtime_file("", true),
+			},
+			-- Do not send telemetry data containing a randomized but unique identifier
+			telemetry = {
+				enable = false,
+			},
+		},
+	},
+})
+
+require("lsp.go")
+-- require("lsp.sumneko")
+
+-- vim.cmd([[autocmd BufWritePost *.go lua require("lint").try_lint()]])
+-- vim.cmd([[autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 5000)]])
+-- vim.cmd([[autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 5000)]])

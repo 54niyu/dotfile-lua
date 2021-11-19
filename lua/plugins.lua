@@ -181,4 +181,19 @@ return require("packer").startup(function(use)
 		ft = { "markdown", "md" },
 		cmd = "MarkdownPreview",
 	})
+
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require("plugins.null-ls")()
+		end,
+		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	})
+
+	use({
+		"mhartington/formatter.nvim",
+		config = function()
+			require("plugins.formatter")()
+		end,
+	})
 end)
