@@ -1,4 +1,4 @@
-function goimports(timeout_ms)
+function Goimports(timeout_ms)
 	local context = { source = { organizeImports = true } }
 	vim.validate({ context = { context, "t", true } })
 
@@ -33,7 +33,7 @@ function goimports(timeout_ms)
 end
 
 vim.cmd([[autocmd BufWritePre *.py,*.lua,*.go lua vim.lsp.buf.formatting_sync(nil, 5000)]])
-vim.cmd([[autocmd BufWritePre *.go lua goimports(5000)]])
+vim.cmd([[autocmd BufWritePre *.go lua Goimports(5000)]])
 vim.cmd([[autocmd BufEnter,BufWritePost *.go lua require("lint").try_lint()]])
 
 -- vim.api.nvim_exec(

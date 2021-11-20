@@ -51,7 +51,7 @@ vim.g.mapleader = " "
 vim.api.nvim_set_keymap("n", "<Leader>h", ":set hlsearch!<CR>", { noremap = true, silent = true })
 
 -- explorer
-vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<Leader>e", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
 
 -- telescope
 vim.api.nvim_set_keymap("n", "<Leader><Space>", ":Telescope find_files<CR>", { noremap = true, silent = true })
@@ -69,10 +69,11 @@ vim.api.nvim_set_keymap("n", "<leader>t", ":ToggleTerm<CR>", { noremap = true, s
 local mappings = {
 	["/"] = "Comment",
 	["c"] = "Close Buffer",
-	["e"] = "Explorer",
+	-- ["e"] = "Explorer",
 	["<Space>"] = "Find File",
 	["h"] = "No Highlight",
 	["t"] = "ToggleTerminal",
+	e = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
 	b = {
 		name = "+buffer",
 		l = { "<cmd>Telescope buffers<cr>", "List Buffers" },
