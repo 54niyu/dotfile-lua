@@ -22,9 +22,9 @@ vim.opt.errorbells = false
 vim.opt.joinspaces = false
 vim.opt.title = true
 vim.opt.lazyredraw = true
--- vim.opt.encoding = 'UTF-8'
+vim.opt.encoding = "utf-8"
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 vim.opt.listchars = { tab = ">>>", trail = "·", precedes = "←", extends = "→", eol = "↲", nbsp = "␣" }
 -- Buffer
 vim.opt.fileformat = "unix"

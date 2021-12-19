@@ -13,6 +13,10 @@ cmp.setup({
 		["<C-e>"] = cmp.mapping.close(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }),
 	},
+	experimental = {
+		ghost_text = true,
+		native_menu = false,
+	},
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "vsnip" },

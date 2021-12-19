@@ -11,11 +11,11 @@ return function()
 		-- python formatting
 		b.formatting.autopep8,
 
-		-- b.formatting.codespell,
+		b.formatting.codespell,
 
 		-- go formatting
 		-- b.formatting.gofumpt,
-		-- b.formatting.goimports,
+		b.formatting.goimports,
 
 		-- go lint
 		-- b.diagnostics.golangci_lint,

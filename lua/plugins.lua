@@ -127,31 +127,43 @@ return require("packer").startup(function(use)
 	-- Colorschema
 	use("sainnhe/gruvbox-material")
 	use("navarasu/onedark.nvim")
+	use("folke/tokyonight.nvim")
 
 	-- General Plugins
-	use({ "airblade/vim-rooter", disable = true })
 	use({ "terrortylor/nvim-comment" })
 	use({ "edluffy/specs.nvim" })
-	use({
-		"folke/todo-comments.nvim",
-		opt = true,
-		config = function()
-			require("todo-comments").setup({})
-		end,
-	})
+
 	use({
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
+		cmd = "TroubleToggle",
 		opt = true,
+		ft = "go",
 		config = function()
 			require("trouble").setup({})
 		end,
 	})
-
-	use({ "folke/tokyonight.nvim" })
+	use({
+		"simrat39/symbols-outline.nvim",
+		cmd = "SymbolsOutline",
+	})
+	use({
+		"ahmedkhalf/lsp-rooter.nvim",
+		event = "BufRead",
+		config = function()
+			require("lsp-rooter").setup()
+		end,
+	})
 
 	-- Term
 	use({ "akinsho/nvim-toggleterm.lua" })
+
+	use({
+		"mhartington/formatter.nvim",
+		config = function()
+			require("plugins.formatter")()
+		end,
+	})
 
 	-- Go
 	use({
@@ -170,7 +182,10 @@ return require("packer").startup(function(use)
 		ft = { "go" },
 		config = function()
 			require("lint").linters_by_ft = {
-				go = { "golangcilint" },
+				go = { "golangcilint", "codespell" },
+				lua = { "codespell" },
+				markdown = { "codespell" },
+				python = { "codespell" },
 			}
 		end,
 	})
@@ -182,11 +197,11 @@ return require("packer").startup(function(use)
 		cmd = "MarkdownPreview",
 	})
 
-	use({
-		"jose-elias-alvarez/null-ls.nvim",
-		config = function()
-			require("plugins.null-ls")()
-		end,
-		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    	})
+	-- use({
+	-- 	"jose-elias-alvarez/null-ls.nvim",
+	-- 	config = function()
+	-- 		require("plugins.null-ls")()
+	-- 	end,
+	-- 	requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- })
 end)

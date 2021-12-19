@@ -1,11 +1,11 @@
 -- better window movement
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', {silent = true})
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', {silent = true})
--- quick fix 
-vim.api.nvim_set_keymap('n', ']]', ':cnext<cr>', {silent = true})
-vim.api.nvim_set_keymap('n', '[[', ':cprev<cr>', {silent = true})
+vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
+-- quick fix
+vim.api.nvim_set_keymap("n", "]]", ":cnext<cr>", { silent = true })
+vim.api.nvim_set_keymap("n", "[[", ":cprev<cr>", { silent = true })
 -- Terminal window navigation
 vim.cmd([[
   tnoremap <C-h> <C-\><C-N><C-w>h
@@ -33,4 +33,3 @@ xmap        s   <Plug>(vsnip-select-text)
 nmap        S   <Plug>(vsnip-cut-text)
 xmap        S   <Plug>(vsnip-cut-text)
 ]])
-

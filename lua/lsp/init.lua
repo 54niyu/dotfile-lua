@@ -3,6 +3,9 @@
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
+
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
@@ -56,7 +59,7 @@ vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 require("lspkind").init()
 
 require("lspconfig").gopls.setup({
-	filetype = { "go", "golang" },
+	filetype = { "go" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = { gopls = { analyses = { unusedparams = true, fillstruct = false }, staticcheck = true } },
