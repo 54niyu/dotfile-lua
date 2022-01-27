@@ -74,7 +74,14 @@ return require("packer").startup(function(use)
 	use("ryanoasis/vim-devicons")
 
 	-- Status Line and Bufferline
-	use({ "glepnir/galaxyline.nvim" })
+	-- use({ "glepnir/galaxyline.nvim" })
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "kyazdani42/nvim-web-devicons", opt = true },
+		config = function()
+			require("lualine").setup()
+		end,
+	})
 
 	-- Which key
 	use({ "folke/which-key.nvim" })
@@ -82,12 +89,13 @@ return require("packer").startup(function(use)
 	-- Telescope
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-fzy-native.nvim")
-	-- use("nvim-telescope/telescope-project.nvim")
 	use({
 		"ahmedkhalf/project.nvim",
 		config = function()
-			require("project_nvim").setup({})
-			vim.g.nvim_tree_respect_buf_cwd = 1
+			require("project_nvim").setup({
+				silent_chdir = false,
+				manual_mode = true,
+			})
 		end,
 	})
 
@@ -101,7 +109,14 @@ return require("packer").startup(function(use)
 	})
 
 	-- Git
-	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
+	use({
+		"lewis6991/gitsigns.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("plugins.gitsigns")()
+			require("gitsigns").setup()
+		end,
+	})
 	use({
 		"sindrets/diffview.nvim",
 		opt = true,
@@ -147,13 +162,13 @@ return require("packer").startup(function(use)
 		"simrat39/symbols-outline.nvim",
 		cmd = "SymbolsOutline",
 	})
-	use({
-		"ahmedkhalf/lsp-rooter.nvim",
-		event = "BufRead",
-		config = function()
-			require("lsp-rooter").setup()
-		end,
-	})
+	-- use({
+	-- 	"ahmedkhalf/lsp-rooter.nvim",
+	-- 	event = "BufRead",
+	-- 	config = function()
+	-- 		require("lsp-rooter").setup()
+	-- 	end,
+	-- })
 
 	-- Term
 	use({ "akinsho/nvim-toggleterm.lua" })
