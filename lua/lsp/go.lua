@@ -32,16 +32,4 @@ function Goimports(timeout_ms)
 	end
 end
 
--- vim.cmd([[autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 5000)]])
--- vim.cmd([[autocmd BufWritePre *.go lua Goimports(5000)]])
 vim.cmd([[autocmd BufEnter,BufWritePost *.go lua require("lint").try_lint()]])
-
--- vim.api.nvim_exec(
--- 	[[
--- augroup FormatAutogroup
---   autocmd!
---    autocmd BufWritePost *.lua,*.py.*.go FormatWrite
--- augroup END
--- ]],
--- 	true
--- )
