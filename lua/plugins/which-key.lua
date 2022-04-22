@@ -86,7 +86,7 @@ return function()
 			b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
 			c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
 			C = { "<cmd>Telescope git_bcommits<cr>", "Checkout commit(for current file)" },
-			g = { "<cmd>Neogit<cr>", "Magit vim" },
+			g = { "<cmd>Neogit kind=split<cr>", "neogit" },
 		},
 		l = {
 			name = "+LSP",

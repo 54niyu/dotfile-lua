@@ -3,9 +3,11 @@ vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { silent = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { silent = true })
+
 -- quick fix
 vim.api.nvim_set_keymap("n", "]]", ":cnext<cr>", { silent = true })
 vim.api.nvim_set_keymap("n", "[[", ":cprev<cr>", { silent = true })
+
 -- Terminal window navigation
 vim.cmd([[
   tnoremap <C-h> <C-\><C-N><C-w>h
@@ -18,6 +20,7 @@ vim.cmd([[
   inoremap <C-l> <C-\><C-N><C-w>l
   tnoremap <Esc> <C-\><C-n>
 ]])
+
 -- Snippet
 vim.cmd([[
 imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'

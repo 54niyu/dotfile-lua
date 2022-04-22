@@ -20,6 +20,16 @@ return function()
 						stdin = true,
 					}
 				end,
+				function()
+					return {
+						exe = "importgroup",
+						stdin = true,
+						args = { "-std", "true" },
+						-- 	"-f",
+						-- 	vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
+						-- },
+					}
+				end,
 			},
 			python = {
 				-- Configuration for psf/black
