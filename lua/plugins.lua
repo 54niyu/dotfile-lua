@@ -42,7 +42,7 @@ return packer.startup(function(use)
 			require("plugins.lspkind")()
 		end,
 	})
-	use("glepnir/lspsaga.nvim")
+	-- use("glepnir/lspsaga.nvim")
 	use({
 		"ray-x/lsp_signature.nvim",
 		config = function()
@@ -108,7 +108,7 @@ return packer.startup(function(use)
 			require("plugins.indent-blankline")()
 		end,
 	})
-	use("JoosepAlviste/nvim-ts-context-commentstring")
+	-- use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("romgrk/nvim-treesitter-context")
 
 	-- Icons
@@ -197,15 +197,15 @@ return packer.startup(function(use)
 			require("plugins.hlslens")()
 		end,
 	})
-	use({
-		"kshenoy/vim-signature",
-		config = function()
-			require("plugins.vim-signature")()
-		end,
-	})
+	-- use({
+	-- 	"kshenoy/vim-signature",
+	-- 	config = function()
+	-- 		require("plugins.vim-signature")()
+	-- 	end,
+	-- })
 
 	-- Colorschema
-	use("sainnhe/gruvbox-material")
+	-- use("sainnhe/gruvbox-material")
 	use("navarasu/onedark.nvim")
 	use("folke/tokyonight.nvim")
 
@@ -223,20 +223,20 @@ return packer.startup(function(use)
 		end,
 	})
 
-	use({
-		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-		cmd = "TroubleToggle",
-		opt = true,
-		ft = "go",
-		config = function()
-			require("trouble").setup({})
-		end,
-	})
-	use({
-		"simrat39/symbols-outline.nvim",
-		cmd = "SymbolsOutline",
-	})
+	-- use({
+	-- 	"folke/trouble.nvim",
+	-- 	requires = "kyazdani42/nvim-web-devicons",
+	-- 	cmd = "TroubleToggle",
+	-- 	opt = true,
+	-- 	ft = "go",
+	-- 	config = function()
+	-- 		require("trouble").setup({})
+	-- 	end,
+	-- })
+	-- use({
+	-- 	"simrat39/symbols-outline.nvim",
+	-- 	cmd = "SymbolsOutline",
+	-- })
 	-- use({
 	-- 	"ahmedkhalf/lsp-rooter.nvim",
 	-- 	event = "BufRead",

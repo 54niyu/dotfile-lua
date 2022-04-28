@@ -49,7 +49,7 @@ vim.cmd("sign define LspDiagnosticsSignHint text=")
 
 require("lspconfig").gopls.setup({
 	filetype = { "go" },
-	cmd = { "gopls", "-rpc.trace", "-logfile", "/Users/bing.wang/gopls.log" },
+	-- cmd = { "gopls", "-rpc.trace", "-logfile", "/Users/bing.wang/gopls.log" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = { gopls = { analyses = { unusedparams = true, fillstruct = false }, staticcheck = true } },
