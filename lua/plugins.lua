@@ -9,8 +9,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute("packadd packer.nvim")
 end
 
-vim.cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
-
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
@@ -26,6 +24,13 @@ packer.init({
 		auto_clean = true,
 	},
 })
+
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile 
+  augroup end
+]])
 
 return packer.startup(function(use)
 	-- Packer can manage itself as an optional plugin
@@ -182,7 +187,12 @@ return packer.startup(function(use)
 		cmd = { "Neogit" },
 	})
 	-- Quickfix
-	use({ "kevinhwang91/nvim-bqf" })
+	use({
+		"kevinhwang91/nvim-bqf",
+		config = function()
+			require("plugins.bqf")()
+		end,
+	})
 
 	-- Move & Search & replace
 	use({
@@ -197,12 +207,12 @@ return packer.startup(function(use)
 			require("plugins.hlslens")()
 		end,
 	})
-	-- use({
-	-- 	"kshenoy/vim-signature",
-	-- 	config = function()
-	-- 		require("plugins.vim-signature")()
-	-- 	end,
-	-- })
+	use({
+		"kshenoy/vim-signature",
+		config = function()
+			require("plugins.vim-signature")()
+		end,
+	})
 
 	-- Colorschema
 	-- use("sainnhe/gruvbox-material")
@@ -233,10 +243,10 @@ return packer.startup(function(use)
 	-- 		require("trouble").setup({})
 	-- 	end,
 	-- })
-	-- use({
-	-- 	"simrat39/symbols-outline.nvim",
-	-- 	cmd = "SymbolsOutline",
-	-- })
+	use({
+		"simrat39/symbols-outline.nvim",
+		cmd = "SymbolsOutline",
+	})
 	-- use({
 	-- 	"ahmedkhalf/lsp-rooter.nvim",
 	-- 	event = "BufRead",
@@ -276,12 +286,7 @@ return packer.startup(function(use)
 		opt = true,
 		ft = { "go" },
 		config = function()
-			require("lint").linters_by_ft = {
-				go = { "golangcilint", "codespell" },
-				lua = { "codespell" },
-				markdown = { "codespell" },
-				python = { "codespell" },
-			}
+			require("plugins.nvim-lint")()
 		end,
 	})
 

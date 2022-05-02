@@ -25,9 +25,6 @@ return function()
 						exe = "importgroup",
 						stdin = true,
 						args = { "-std", "true" },
-						-- 	"-f",
-						-- 	vim.fn.fnameescape(vim.api.nvim_buf_get_name(0)),
-						-- },
 					}
 				end,
 			},

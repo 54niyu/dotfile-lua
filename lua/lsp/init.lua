@@ -48,7 +48,7 @@ vim.cmd("sign define LspDiagnosticsSignHint text=")
 -- vim.cmd("setlocal omnifunc=v:lua.vim.lsp.omnifunc")
 
 require("lspconfig").gopls.setup({
-	filetype = { "go" },
+	-- filetype = { "go" },
 	-- cmd = { "gopls", "-rpc.trace", "-logfile", "/Users/bing.wang/gopls.log" },
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -66,27 +66,22 @@ require("lspconfig").sumneko_lua.setup({
 	capabilities = capabilities,
 })
 
-function OrgImports(wait_ms)
-	local params = vim.lsp.util.make_range_params()
-	params.context = { only = { "source.organizeImports" } }
-	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
-	for _, res in pairs(result or {}) do
-		for _, r in pairs(res.result or {}) do
-			if r.edit then
-				vim.lsp.util.apply_workspace_edit(r.edit)
-			else
-				vim.lsp.buf.execute_command(r.command)
-			end
-		end
-	end
-end
+require("lspconfig").rust_analyzer.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
 
--- vim.cmd([[
--- augroup GO_LSP
--- 	autocmd!
--- 	autocmd BufWritePre *.go :silent! lua vim.lsp.buf.formatting()
--- 	autocmd BufWritePre *.go :silent! lua org_imports(3000)
--- augroup END
--- ]])
-
-vim.cmd([[autocmd BufEnter,BufWritePost *.go lua require("lint").try_lint()]])
+-- function OrgImports(wait_ms)
+-- 	local params = vim.lsp.util.make_range_params()
+-- 	params.context = { only = { "source.organizeImports" } }
+-- 	local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, wait_ms)
+-- 	for _, res in pairs(result or {}) do
+-- 		for _, r in pairs(res.result or {}) do
+-- 			if r.edit then
+-- 				vim.lsp.util.apply_workspace_edit(r.edit)
+-- 			else
+-- 				vim.lsp.buf.execute_command(r.command)
+-- 			end
+-- 		end
+-- 	end
+-- end

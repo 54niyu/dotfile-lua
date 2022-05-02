@@ -1,27 +1,34 @@
 return function()
-	local ok, null_ls = pcall(require, "null-ls")
-	if not ok then
-		return
-	end
-
-	local b = null_ls.builtins
-	local sources = {
-		-- lua formatting
-		b.formatting.stylua,
-		-- python formatting
-		b.formatting.autopep8,
-
-		b.formatting.codespell,
-
-		-- go formatting
-		-- b.formatting.gofumpt,
-		b.formatting.goimports,
-
-		-- go lint
-		-- b.diagnostics.golangci_lint,
-	}
-	null_ls.config({
-		sources = sources,
-	})
-	require("lspconfig")["null-ls"].setup({})
+	-- local ok, null_ls = pcall(require, "null-ls")
+	-- if not ok then
+	-- 	return
+	-- end
+	--
+	-- local h = require("null-ls.helpers")
+	-- local methods = require("null-ls.methods")
+	-- local FORMATTING = methods.internal.FORMATTING
+	-- local g = h.make_builtin({
+	-- 	name = "goimports",
+	-- 	meta = {
+	-- 		url = "https://pkg.go.dev/golang.org/x/tools/cmd/goimports",
+	-- 		description = "Updates your Go import lines, adding missing ones and removing unreferenced ones.",
+	-- 	},
+	-- 	method = FORMATTING,
+	-- 	filetypes = { "go" },
+	-- 	generator_opts = {
+	-- 		command = "importgroup",
+	-- 		args = { "-std", "true" },
+	-- 		to_stdin = true,
+	-- 	},
+	-- 	factory = h.formatter_factory,
+	-- })
+	-- null_ls.setup({
+	-- 	sources = {
+	-- 		null_ls.builtins.formatting.stylua,
+	-- 		-- null_ls.builtins.completion.spell,
+	-- 		-- null_ls.builtins.diagnostics.golangci_lint,
+	-- 		null_ls.builtins.formatting.goimports,
+	-- 		g,
+	-- 	},
+	-- })
 end
