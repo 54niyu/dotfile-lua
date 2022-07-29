@@ -236,12 +236,12 @@ return packer.startup(function(use)
         end,
     })
 
-    -- use({
-    --     "mhartington/formatter.nvim",
-    --     config = function()
-    --         require("plugins.formatter")()
-    --     end,
-    -- })
+    use({
+        "mhartington/formatter.nvim",
+        config = function()
+            require("plugins.formatter")()
+        end,
+    })
 
     -- Go
     use({
@@ -269,6 +269,21 @@ return packer.startup(function(use)
         ft = { "markdown", "md" },
         cmd = "MarkdownPreview",
     })
+
+    use {
+        "nvim-neorg/neorg",
+        ft = "norg",
+        after = "nvim-treesitter",
+        config = function()
+            require('neorg').setup {
+                -- ... -- check out setup part...
+                load = {
+                    ["core.defaults"] = {},
+                }
+            }
+        end,
+        requires = "nvim-lua/plenary.nvim"
+    }
 
     -- use({
     -- 	"jose-elias-alvarez/null-ls.nvim",
