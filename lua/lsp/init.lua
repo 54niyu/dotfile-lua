@@ -71,6 +71,11 @@ require("lspconfig").rust_analyzer.setup({
 	capabilities = capabilities,
 })
 
+require("lspconfig").clangd.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 -- function OrgImports(wait_ms)
 -- 	local params = vim.lsp.util.make_range_params()
 -- 	params.context = { only = { "source.organizeImports" } }

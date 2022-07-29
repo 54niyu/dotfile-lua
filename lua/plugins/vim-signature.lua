@@ -1,4 +1,5 @@
 return function()
-	-- vim.g.SignatureMarkTextHLDynamic = 1
-	-- vim.g.SignatureMarkerTextHLDynamic = 1
+	require("lsp_signature").setup()
+	vim.g.SignatureMarkTextHLDynamic = 1
+	vim.g.SignatureMarkerTextHLDynamic = 1
 end
