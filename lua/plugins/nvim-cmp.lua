@@ -56,6 +56,7 @@ return function()
             { name = "treesitter" },
             { name = "tags" },
             { name = "cmp_tabnine" },
+            { name = "neorg" },
         },
         formatting = {
             format = function(entry, vim_item)

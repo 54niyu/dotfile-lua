@@ -276,9 +276,14 @@ return packer.startup(function(use)
         after = "nvim-treesitter",
         config = function()
             require('neorg').setup {
-                -- ... -- check out setup part...
                 load = {
                     ["core.defaults"] = {},
+                    ["core.norg.concealer"] = {},
+                    ["core.norg.completion"] = {
+                        config = {
+                            engine = 'nvim-cmp',
+                        }
+                    },
                 }
             }
         end,

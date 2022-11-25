@@ -37,8 +37,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Diagnostics symbols for display in the sign column.
 vim.cmd("sign define LspDiagnosticsSignError text=")
@@ -75,6 +74,11 @@ require("lspconfig").clangd.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
+
+require'lspconfig'.vuels.setup{
+	on_attach = on_attach,
+	capabilities = capabilities,
+}
 
 -- function OrgImports(wait_ms)
 -- 	local params = vim.lsp.util.make_range_params()
