@@ -60,7 +60,7 @@ require("lspconfig").pyright.setup({
 	capabilities = capabilities,
 })
 
-require("lspconfig").sumneko_lua.setup({
+require("lspconfig").lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
@@ -76,6 +76,11 @@ require("lspconfig").clangd.setup({
 })
 
 require'lspconfig'.vuels.setup{
+	on_attach = on_attach,
+	capabilities = capabilities,
+}
+
+require'lspconfig'.bufls.setup{
 	on_attach = on_attach,
 	capabilities = capabilities,
 }

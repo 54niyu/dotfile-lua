@@ -28,7 +28,7 @@ packer.init({
 vim.cmd([[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile 
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
   augroup end
 ]])
 
@@ -89,6 +89,13 @@ return packer.startup(function(use)
         end,
     })
 
+    -- im-select
+    -- use({
+    --     'keaising/im-select.nvim',
+    --     config = function()
+    --         require('im_select').setup()
+    --     end
+    -- })
 
     -- Treesitter
     use({
