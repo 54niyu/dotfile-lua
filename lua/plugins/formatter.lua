@@ -1,18 +1,18 @@
 return function()
 	require("formatter").setup({
 		filetype = {
-			-- lua = {
-			-- 	function()
-			-- 		return {
-			-- 			exe = "stylua",
-			-- 			args = {
-			-- 				-- "--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml",
-			-- 				"-",
-			-- 			},
-			-- 			stdin = true,
-			-- 		}
-			-- 	end,
-			-- },
+			lua = {
+				function()
+					return {
+						exe = "stylua",
+						args = {
+							-- "--config-path " .. os.getenv("XDG_CONFIG_HOME") .. "/stylua/stylua.toml",
+							"-",
+						},
+						stdin = true,
+					}
+				end,
+			},
 			go = {
 				function()
 					return {
@@ -38,6 +38,15 @@ return function()
 					}
 				end,
 			},
+            jsonnet = {
+                function ()
+                    return {
+                        exe = "jsonnetfmt",
+                        args = { "-"},
+                        stdin = true,
+                    }
+                end
+            }
 		},
 	})
 
@@ -45,7 +54,7 @@ return function()
 		[[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.go,*.py FormatWrite
+  autocmd BufWritePost *.lua,*.go,*.py,*.jsonnet FormatWrite
 augroup END
 ]],
 		true

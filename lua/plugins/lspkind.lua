@@ -45,6 +45,7 @@ return function()
             Struct = "פּ",
             Event = "",
             Operator = "",
+            Copilot = "",
             TypeParameter = ""
         },
     })
